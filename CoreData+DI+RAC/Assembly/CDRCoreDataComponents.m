@@ -6,60 +6,6 @@
 #import "CDRCoreDataComponents.h"
 
 
-NSString *const NSManagedObjectContextSchedulerKey = @"NSManagedObjectContextSchedulerKey";
-
-static char *NSManagedObjectContextAssociateKey;
-
-@interface NSManagedObjectContext (InjectedInitialization)
-
-@property(nonatomic, readwrite) RACScheduler *scheduler;
-
-- (instancetype)initWithConcurrencyType:(NSManagedObjectContextConcurrencyType)type
-    persistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-
-- (instancetype)initWithConcurrencyType:(NSManagedObjectContextConcurrencyType)type parentContext:(NSManagedObjectContext *)parentContext;
-
-@end
-
-@implementation NSManagedObjectContext (InjectedInitialization)
-
-- (instancetype)initWithConcurrencyType:(NSManagedObjectContextConcurrencyType)type
-    persistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    self = [self initWithConcurrencyType:type];
-    if (self) {
-        [self setPersistentStoreCoordinator:persistentStoreCoordinator];
-    }
-    return self;
-}
-
-- (instancetype)initWithConcurrencyType:(NSManagedObjectContextConcurrencyType)type parentContext:(NSManagedObjectContext *)parentContext
-{
-    self = [self initWithConcurrencyType:type];
-    if (self) {
-        self.parentContext = parentContext;
-    }
-    return self;
-}
-
-- (RACScheduler *)scheduler
-{
-    return self.userInfo[NSManagedObjectContextSchedulerKey];
-}
-
-- (void)setScheduler:(RACScheduler *)scheduler
-{
-    objc_setAssociatedObject(scheduler, NSManagedObjectContextAssociateKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-@end
-
-@interface NSPersistentStoreCoordinator (InjectedInitialization)
-- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel *)model type:(NSString *)type URL:(NSURL *)storeURL
-    options:(NSDictionary *)options;
-@end
-
-
 @implementation NSPersistentStoreCoordinator (InjectedInitialization)
 
 - (instancetype)initWithManagedObjectModel:(NSManagedObjectModel *)model type:(NSString *)type URL:(NSURL *)storeURL
@@ -169,3 +115,5 @@ static char *NSManagedObjectContextAssociateKey;
 }
 
 @end
+
+

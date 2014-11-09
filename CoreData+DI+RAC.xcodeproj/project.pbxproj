@@ -28,6 +28,7 @@
 		6A38DF7B186864B7008B6251 /* CDRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A38DF79186864B7008B6251 /* CDRViewController.m */; };
 		9F803C072E6D413C954D9451 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6614AB7CCF6A460D80918039 /* libPods.a */; };
 		BA798129243676A9AE43E05D /* CDRApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = BA798353FF79E0C1B54F9C13 /* CDRApplicationAssembly.m */; };
+		BA7989AB34810598CF83F105 /* CoreData+DI+RAC.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79876599056EA508CEF51F /* CoreData+DI+RAC.m */; };
 		BA798B700D9EBE2BFD24D2D0 /* CDRCoreDataComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7989D7DAABA7866E26C234 /* CDRCoreDataComponents.m */; };
 		BA798C128A45FD3706919361 /* CDRApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = BA798353FF79E0C1B54F9C13 /* CDRApplicationAssembly.m */; };
 		BA798C3BE087437763927FD0 /* CDRCoreDataComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7989D7DAABA7866E26C234 /* CDRCoreDataComponents.m */; };
@@ -72,7 +73,9 @@
 		6A38DF78186864B7008B6251 /* CDRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRViewController.h; sourceTree = "<group>"; };
 		6A38DF79186864B7008B6251 /* CDRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRViewController.m; sourceTree = "<group>"; };
 		8EA9FBDC166EF3C873F77DC6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BA7980955C05A4A386D71DA5 /* CoreData+DI+RAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+DI+RAC.h"; sourceTree = "<group>"; };
 		BA798353FF79E0C1B54F9C13 /* CDRApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRApplicationAssembly.m; sourceTree = "<group>"; };
+		BA79876599056EA508CEF51F /* CoreData+DI+RAC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreData+DI+RAC.m"; sourceTree = "<group>"; };
 		BA79889DBC603E01413208B1 /* CDRCoreDataComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRCoreDataComponents.h; sourceTree = "<group>"; };
 		BA7989D7DAABA7866E26C234 /* CDRCoreDataComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRCoreDataComponents.m; sourceTree = "<group>"; };
 		BA798F8AEB2999EC051E9263 /* CDRApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRApplicationAssembly.h; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 				6A38DF78186864B7008B6251 /* CDRViewController.h */,
 				6A38DF79186864B7008B6251 /* CDRViewController.m */,
 				BA798D64F912017B1FB32382 /* Assembly */,
+				BA798AC5E387F0D72A8634D9 /* Categories */,
 			);
 			path = "CoreData+DI+RAC";
 			sourceTree = "<group>";
@@ -187,6 +191,15 @@
 				6A38DF6818682CB3008B6251 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA798AC5E387F0D72A8634D9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				BA79876599056EA508CEF51F /* CoreData+DI+RAC.m */,
+				BA7980955C05A4A386D71DA5 /* CoreData+DI+RAC.h */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		BA798D64F912017B1FB32382 /* Assembly */ = {
@@ -272,8 +285,6 @@
 			mainGroup = 6A38DF3418682CB3008B6251;
 			productRefGroup = 6A38DF3E18682CB3008B6251 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				6A38DF3C18682CB3008B6251 /* CoreData+DI+RAC */,
@@ -318,6 +329,7 @@
 				CB876498FC5B3AE2A38361F4 /* CDRDataSource.m in Sources */,
 				BA798C128A45FD3706919361 /* CDRApplicationAssembly.m in Sources */,
 				BA798C3BE087437763927FD0 /* CDRCoreDataComponents.m in Sources */,
+				BA7989AB34810598CF83F105 /* CoreData+DI+RAC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TyphoonAssembly.h"
 
 @class CDRCoreDataComponents;
 @class CDRDataSource;
