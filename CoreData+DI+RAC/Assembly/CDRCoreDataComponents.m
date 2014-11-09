@@ -18,6 +18,7 @@ static char *NSManagedObjectContextAssociateKey;
     persistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
 
 - (instancetype)initWithConcurrencyType:(NSManagedObjectContextConcurrencyType)type parentContext:(NSManagedObjectContext *)parentContext;
+
 @end
 
 @implementation NSManagedObjectContext (InjectedInitialization)
@@ -76,34 +77,30 @@ static char *NSManagedObjectContextAssociateKey;
 
 @implementation CDRCoreDataComponents
 
-- (id)mainManagedObjectContext
+- (NSManagedObjectContext *)mainManagedObjectContext
 {
-    return [TyphoonDefinition withClass:[NSManagedObjectContext class] configuration:^(TyphoonDefinition* definition)
-    {
-    	[definition useInitializer:@selector(initWithConcurrencyType:persistentStoreCoordinator:) parameters:^(TyphoonMethod* initializer)
-    	{
+    return [TyphoonDefinition withClass:[NSManagedObjectContext class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithConcurrencyType:persistentStoreCoordinator:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:@(NSMainQueueConcurrencyType)];
             [initializer injectParameterWith:self.persistentStoreCoordinator];
-    	}];
+        }];
         definition.scope = TyphoonScopeLazySingleton;
     }];
 }
 
-- (id)managedObjectContext
+- (NSManagedObjectContext *)managedObjectContext
 {
-    return [TyphoonDefinition withClass:[NSManagedObjectContext class] configuration:^(TyphoonDefinition* definition)
-    {
-    	[definition useInitializer:@selector(initWithConcurrencyType:parentContext:) parameters:^(TyphoonMethod* initializer)
-    	{
+    return [TyphoonDefinition withClass:[NSManagedObjectContext class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithConcurrencyType:parentContext:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:@(NSPrivateQueueConcurrencyType)];
             [initializer injectParameterWith:self.mainManagedObjectContext];
-    	}];
+        }];
     }];
 }
 
 #pragma mark - Persistent store coordinator
 
-- (id)persistentStoreCoordinator
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     return [TyphoonDefinition withClass:[NSPersistentStoreCoordinator class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithManagedObjectModel:type:URL:options:) parameters:^(TyphoonMethod *initializer) {
@@ -115,14 +112,14 @@ static char *NSManagedObjectContextAssociateKey;
     }];
 }
 
-- (id)fileManager
+- (NSFileManager *)fileManager
 {
     return [TyphoonDefinition withClass:[NSFileManager class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(defaultManager)];
     }];
 }
 
-- (id)applicationDocumentsDirectories
+- (NSArray *)applicationDocumentsDirectories
 {
     return [TyphoonDefinition withFactory:[self fileManager] selector:@selector(URLsForDirectory:inDomains:)
         parameters:^(TyphoonMethod *factoryMethod) {
@@ -136,7 +133,7 @@ static char *NSManagedObjectContextAssociateKey;
     return [TyphoonDefinition withFactory:[self applicationDocumentsDirectories] selector:@selector(lastObject)];
 }
 
-- (id)storeURL
+- (NSURL *)storeURL
 {
     return [TyphoonDefinition withFactory:[self applicationDocumentsDirectory] selector:@selector(URLByAppendingPathComponent:)
         parameters:^(TyphoonMethod *factoryMethod) {
@@ -146,7 +143,7 @@ static char *NSManagedObjectContextAssociateKey;
 
 #pragma mark - Managed object model
 
-- (id)managedObjectModel
+- (NSManagedObjectModel *)managedObjectModel
 {
     return [TyphoonDefinition withClass:[NSManagedObjectModel class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithContentsOfURL:) parameters:^(TyphoonMethod *initializer) {
@@ -155,14 +152,14 @@ static char *NSManagedObjectContextAssociateKey;
     }];
 }
 
-- (id)mainBundle
+- (NSBundle *)mainBundle
 {
     return [TyphoonDefinition withClass:[NSBundle class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(mainBundle)];
     }];
 }
 
-- (id)modelURL
+- (NSURL *)modelURL
 {
     return [TyphoonDefinition withFactory:[self mainBundle] selector:@selector(URLForResource:withExtension:)
         parameters:^(TyphoonMethod *factoryMethod) {

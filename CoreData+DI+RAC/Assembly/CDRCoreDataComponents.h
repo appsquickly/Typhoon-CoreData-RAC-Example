@@ -8,24 +8,24 @@
 
 @interface CDRCoreDataComponents : TyphoonAssembly
 
-- (id)mainManagedObjectContext;
+- (NSManagedObjectContext *)mainManagedObjectContext;
 
-- (id)managedObjectContext;
+- (NSManagedObjectContext *)managedObjectContext;
 
-- (id)persistentStoreCoordinator;
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
 
-- (id)fileManager;
+- (NSFileManager *)fileManager;
 
-- (id)applicationDocumentsDirectories;
+- (NSArray *)applicationDocumentsDirectories;
 
 - (id)applicationDocumentsDirectory;
 
-- (id)storeURL;
+- (NSURL *)storeURL;
 
-- (id)managedObjectModel;
+- (NSManagedObjectModel *)managedObjectModel;
 
-- (id)mainBundle;
+- (NSBundle *)mainBundle;
 
-- (id)modelURL;
+- (NSURL *)modelURL;
 
 @end
