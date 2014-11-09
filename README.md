@@ -16,3 +16,8 @@ The top-level assembly is <a href="https://github.com/typhoon-framework/Typhoon-
 
 The main assembly refers to a helper assembly - <a href="https://github.com/typhoon-framework/Typhoon-CoreData-RAC-Example/blob/master/CoreData%2BDI%2BRAC/Assembly/CDRCoreDataComponents.h">CDRCoreDataComponents</a>, which is responsible for setting up core data. 
 
+# LICENSE
+
+Apache License, Version 2.0, January 2004, http://www.apache.org/licenses/
+
+© 2012 - 2014 Jasper Blues and contributors.
