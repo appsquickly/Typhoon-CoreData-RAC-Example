@@ -48,3 +48,18 @@ static char *NSManagedObjectContextAssociateKey;
 }
 
 @end
+
+
+@implementation NSPersistentStoreCoordinator (InjectedInitialization)
+
+- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel *)model type:(NSString *)type URL:(NSURL *)storeURL
+    options:(NSDictionary *)options
+{
+    self = [self initWithManagedObjectModel:model];
+    if (self) {
+        [self addPersistentStoreWithType:type configuration:nil URL:storeURL options:options error:nil];
+    }
+    return self;
+}
+
+@end
